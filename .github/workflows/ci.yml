@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322ed8b8fda7f0f  # v5
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@2028fbc5c29fe1bcf767cc37ec4ac4d08bd5099d  # v6
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Secret scan (fail on any key-shaped token)
+      run: node scripts/check-secrets.js
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run test suite
+      run: npm test
+
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322ed8b8fda7f0f  # v5
+
+    - name: No forbidden paths are tracked
+      run: |
+        forbidden='^(data|memory|recon|proof|exports|docs/internal)/|^\.env($|\.)|^session-'
+        if git ls-files | grep -E "$forbidden"; then
+          echo "::error::Forbidden path(s) tracked in git:"
+          git ls-files | grep -E "$forbidden"
+          exit 1
+        else
+          echo "OK: no data/ env/ memory/ session/ tracked"
+        fi

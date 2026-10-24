@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Local Environment & Config
+.env
+.env.local
+data/
+*.db
+
+# Internal working notes & session files (never public)
+memory/
+session-*.md
+.tmp/
+
+# Build outputs & exports
+dist/
+build/
+output/
+exports/
+*.pdf
+*.pptx
+/*.png
+
+# Logs & OS files
+logs/
+*.log
+npm-debug.log*
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Temporary workspace, recon evidence & internal build/recon docs
+recon/
+proof/
+docs/internal/
