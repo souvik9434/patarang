@@ -19,10 +19,10 @@ jobs:
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322ed8b8fda7f0f  # v5
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@2028fbc5c29fe1bcf767cc37ec4ac4d08bd5099d  # v6
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322ed8b8fda7f0f  # v5
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
 
     - name: No forbidden paths are tracked
       run: |
