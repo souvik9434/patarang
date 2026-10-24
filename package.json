@@ -16,13 +16,13 @@
     "ai-agent",
     "opensource"
   ],
-  "homepage": "https://github.com/slideforge/slideforge#readme",
+  "homepage": "https://github.com/souvik9434/slideforge#readme",
   "bugs": {
-    "url": "https://github.com/slideforge/slideforge/issues"
+    "url": "https://github.com/souvik9434/slideforge/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slideforge/slideforge.git"
+    "url": "git+https://github.com/souvik9434/slideforge.git"
   },
   "license": "MIT",
   "author": "SlideForge Core Team",

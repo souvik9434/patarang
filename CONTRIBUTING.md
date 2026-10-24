@@ -40,7 +40,7 @@ Label routing: look for [`good first issue`](../../issues?q=is%3Aissue%20is%3Aop
 
 ### 2. Set up your environment
 ```bash
-git clone https://github.com/slideforge/slideforge.git
+git clone https://github.com/souvik9434/slideforge.git
 cd slideforge
 npm install
 npm start   # http://127.0.0.1:4173 — Setup (⚙) → paste YOUR key → Save & Validate

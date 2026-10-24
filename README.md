@@ -50,7 +50,7 @@ SlideForge is a lightning-fast, local-first AI presentation studio. It empowers 
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/slideforge/slideforge.git
+git clone https://github.com/souvik9434/slideforge.git
 cd slideforge
 npm install
 ```

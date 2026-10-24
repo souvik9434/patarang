@@ -1,12 +1,12 @@
 # CODEOWNERS — every change requires owner review.
-# NOTE: replace `@slideforge-maintainer` with the real GitHub username/org team
+# NOTE: replace `@souvik9434` with the real GitHub username/org team
 # before the first push. Blank/unresolvable owners make this file inert.
 
 # Default: all paths
-*  @slideforge-maintainer
+*  @souvik9434
 
 # Security-sensitive core (never relax: key safety & sanitiser live here)
-/src/ai/config-store.js  @slideforge-maintainer
-/src/agents-store.js     @slideforge-maintainer
-/src/sanitize.js         @slideforge-maintainer
-/src/html-vocab.js       @slideforge-maintainer
+/src/ai/config-store.js  @souvik9434
+/src/agents-store.js     @souvik9434
+/src/sanitize.js         @souvik9434
+/src/html-vocab.js       @souvik9434
