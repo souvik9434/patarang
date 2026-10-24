@@ -59,6 +59,9 @@ jobs:
           exit "$rc"
         fi
 
+    - name: Install Playwright chromium (needed by PDF/PNG export tests)
+      run: npx playwright install --with-deps chromium
+
     - name: Run test suite
       run: |
         npm test 2>&1 | tee test.log

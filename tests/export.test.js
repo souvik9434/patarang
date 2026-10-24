@@ -6,6 +6,10 @@ import path from 'node:path';
 
 let playwright = null;
 try { playwright = await import('playwright'); } catch {}
+let chromiumReady = false;
+if (playwright) {
+  try { chromiumReady = existsSync(playwright.chromium.executablePath()); } catch { chromiumReady = false; }
+}
 let pptxgen = null;
 try { pptxgen = await import('pptxgenjs'); } catch {}
 
@@ -21,7 +25,7 @@ const PAGES = [{
   </style></head><body><div class="slide">Export test</div></body></html>`,
 }];
 
-test('pdf export produces a real PDF at 1280x720', { skip: !playwright && 'playwright not installed' }, async () => {
+test('pdf export produces a real PDF at 1280x720', { skip: !playwright ? 'playwright not installed' : (!chromiumReady && 'chromium binary not installed (npx playwright install chromium)') }, async () => {
   const { exportPdf, closeBrowser } = await import('../src/export/index.js');
   const out = path.join(tmp, 'deck.pdf');
   await exportPdf(PAGES, { outFile: out, fontsDir });
@@ -32,7 +36,7 @@ test('pdf export produces a real PDF at 1280x720', { skip: !playwright && 'playw
   await closeBrowser();
 });
 
-test('png export produces a 2x raster of the slide', { skip: !playwright && 'playwright not installed' }, async () => {
+test('png export produces a 2x raster of the slide', { skip: !playwright ? 'playwright not installed' : (!chromiumReady && 'chromium binary not installed (npx playwright install chromium)') }, async () => {
   const { exportPng, closeBrowser } = await import('../src/export/index.js');
   const dir = path.join(tmp, 'png');
   const files = await exportPng(PAGES, { outDir: dir, fontsDir, scale: 2 });
