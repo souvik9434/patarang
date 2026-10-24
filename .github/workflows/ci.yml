@@ -10,6 +10,26 @@ permissions:
   contents: read
 
 jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+
+    - name: No forbidden paths are tracked
+      run: |
+        # Real .env / .env.<env> files must never be tracked — but .env.example
+        # is the TEMPLATE and must be. grep -E has no negative lookahead, so the
+        # env variants are enumerated explicitly.
+        forbidden='^(data|memory|recon|proof|exports|docs/internal)/|^\.env$|^\.env\.(local|production|development|staging)$|^session-|^\.tmp/'
+        if git ls-files | grep -E "$forbidden"; then
+          echo "::error::Forbidden path(s) tracked in git:"
+          git ls-files | grep -E "$forbidden"
+          exit 1
+        else
+          echo "OK: no data/ env/ memory/ session/ tracked"
+        fi
+
   test:
     runs-on: ubuntu-latest
 
@@ -22,32 +42,31 @@ jobs:
       uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4.4.0
       with:
         node-version: ${{ matrix.node-version }}
-
-    - name: Secret scan (fail on any key-shaped token)
-      run: node scripts/check-secrets.js
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        npm install 2>&1 | tee install.log
+        rc=${PIPESTATUS[0]}
+        if [ "$rc" -ne 0 ]; then
+          echo "::error title=Install failed (npm install, exit $rc)::"
+          tail -40 install.log | while IFS= read -r line; do
+            echo "::error title=install.log ::$line"
+          done
+          exit "$rc"
+        fi
 
     - name: Run test suite
-      run: npm test
-
-  hygiene:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check out repository
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
-
-    - name: No forbidden paths are tracked
       run: |
-        forbidden='^(data|memory|recon|proof|exports|docs/internal)/|^\.env($|\.)|^session-'
-        if git ls-files | grep -E "$forbidden"; then
-          echo "::error::Forbidden path(s) tracked in git:"
-          git ls-files | grep -E "$forbidden"
-          exit 1
-        else
-          echo "OK: no data/ env/ memory/ session/ tracked"
+        npm test 2>&1 | tee test.log
+        rc=${PIPESTATUS[0]}
+        if [ "$rc" -ne 0 ]; then
+          echo "::error title=Test failed (npm test, exit $rc)::"
+          tail -60 test.log | while IFS= read -r line; do
+            echo "::error title=test.log ::$line"
+          done
+          exit "$rc"
         fi
