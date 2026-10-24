@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability / API-key exposure
+    url: https://github.com/souvik9434/slideforge/blob/main/SECURITY.md
+    about: Never report key-exposure risks through public issues — use the security policy instead.

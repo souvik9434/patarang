@@ -5,7 +5,7 @@
 ### **The Open-Source AI Presentation Studio**
 *A behaviour-parity, production-grade clone of GenSpark AI Slides running entirely on your own AI API keys.*
 
-[![CI Status](https://github.com/slideforge/slideforge/actions/workflows/ci.yml/badge.svg)](https://github.com/slideforge/slideforge/actions)
+[![CI Status](https://github.com/souvik9434/slideforge/actions/workflows/ci.yml/badge.svg)](https://github.com/souvik9434/slideforge/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D22.19-brightgreen.svg)](https://nodejs.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
