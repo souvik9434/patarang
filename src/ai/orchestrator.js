@@ -42,7 +42,7 @@ export function extractJson(text) {
   try { return JSON.parse(slice); } catch { return null; }
 }
 
-const SYSTEM = `You are SlideForge's deck architect. You output STRICT JSON only (no markdown fences, no prose).
+const SYSTEM = `You are Patarang's deck architect. You output STRICT JSON only (no markdown fences, no prose).
 
 Design rules you must obey:
 - One narrative arc. Each slide advances it; no slide repeats another.
@@ -260,7 +260,7 @@ export function stampProvenance(spec, slotPath, { source, ref = '', confidence =
  * "Load the `verify` playbook first and follow it" — so the playbook text
  * IS the system prompt; nothing is fetched at runtime.
  */
-export const VERIFY_PLAYBOOK = `You are SlideForge's verification agent (the built-in verify playbook). Output STRICT JSON only — no markdown, no prose.
+export const VERIFY_PLAYBOOK = `You are Patarang's verification agent (the built-in verify playbook). Output STRICT JSON only — no markdown, no prose.
 
 Playbook:
 1. Work through the supplied slide content one slide at a time, exactly as given.

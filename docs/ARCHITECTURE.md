@@ -1,4 +1,4 @@
-# SlideForge Architecture & System Design
+# Patarang Architecture & System Design
 
 > **Document Version**: 1.0.0  
 > **Target Audience**: Contributors, Core Maintainers, and Advanced Users  
@@ -7,7 +7,7 @@
 
 ## 1. High-Level Overview
 
-SlideForge is a zero-framework, lightning-fast Node.js application (`>=22.19`) that pairs a zero-dependency backend server with an immersive frontend studio canvas. It mimics GenSpark AI Slides with 100% behavior parity while running entirely locally on the user's own AI API keys.
+Patarang is a zero-framework, lightning-fast Node.js application (`>=22.19`) that pairs a zero-dependency backend server with an immersive frontend studio canvas. It mimics GenSpark AI Slides with 100% behavior parity while running entirely locally on the user's own AI API keys.
 
 ```
 ┌────────────────────────────────────────────────────────┐

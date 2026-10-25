@@ -1,6 +1,6 @@
 /**
  * html-vocab.js — the SINGLE source of truth for which HTML tags / attributes /
- * style properties SlideForge is allowed to emit and to accept.
+ * style properties Patarang is allowed to emit and to accept.
  *
  * Consumed by BOTH:
  *   - src/render/layouts.js  (renderer may only emit vocabulary-allowed markup)

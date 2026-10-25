@@ -753,7 +753,7 @@ async function sendChat(box) {
       selection: state.selection ? { sfId: state.selection.sfId, slot: state.selection.slot } : null,
       selection_text: selectionText(),
     }, (ev) => {
-      if (ev.type === 'reply') { aiMsg({ kind: 'result', title: 'SlideForge', text: ev.text }); }
+      if (ev.type === 'reply') { aiMsg({ kind: 'result', title: 'Patarang', text: ev.text }); }
       else if (ev.type === 'step') log(`${ev.message}`);
       else if (ev.type === 'note') aiMsg({ kind: 'err', text: ev.text });
       else if (ev.type === 'deck') { state.deck = ev.meta_data; }
@@ -954,17 +954,17 @@ const agentState = { token: '', loaded: false, enabled: false, lastOpId: null };
 async function initConnect() {
   if (agentState.loaded) { renderAgents(await api('/api/agents/status')); return; }
   agentState.loaded = true;
-  const base = 'D:\\SlideForge\\scripts\\slideforge-mcp.mjs';
+  const base = 'D:\\Patarang\\scripts\\patarang-mcp.mjs';
   const nodePath = 'C:\\Program Files\\nodejs\\node.exe';
   $('#snipOpen').textContent = JSON.stringify({
-    mcp: { servers: { slideforge: { type: 'local', command: [nodePath, base], disabled: false } } },
+    mcp: { servers: { patarang: { type: 'local', command: [nodePath, base], disabled: false } } },
   }, null, 2);
   $('#snipMcp').textContent = [
     'command: ' + nodePath,
     'args:    ' + JSON.stringify([base]),
     'type:    stdio  (newline-delimited JSON-RPC 2.0)',
-    'tools:   slideforge_schema · slideforge_list_decks · slideforge_deck · slideforge_build_deck · slideforge_save_slides · slideforge_manage_deck · slideforge_edit_text · slideforge_export · slideforge_chat',
-    'env:     SLIDEFORGE_URL=http://127.0.0.1:4173 (optional)',
+    'tools:   patarang_schema · patarang_list_decks · patarang_deck · patarang_build_deck · patarang_save_slides · patarang_manage_deck · patarang_edit_text · patarang_export · patarang_chat',
+    'env:     PATARANG_URL=http://127.0.0.1:4173 (optional)',
   ].join('\n');
   await refreshAgents();
 
@@ -1145,7 +1145,7 @@ function fillReasoning(modelId, current) {
   reasonSel.value = levels.includes(current) ? current : 'low';
   // keep the chip honest about what this model can do
   if (m && m.thinking.length) reasonSel.title = `Sends generationConfig.thinkingConfig ${m.family === 'claude' ? 'thinkingBudget' : 'thinkingLevel'}`;
-  else reasonSel.title = 'This engine manages reasoning on its own; SlideForge sends no override.';
+  else reasonSel.title = 'This engine manages reasoning on its own; Patarang sends no override.';
 }
 
 async function saveSetup() {
@@ -1219,7 +1219,7 @@ function applyAiState() {
   if (p) {
     p.disabled = !on;
     p.placeholder = on
-      ? (state.aiConnected ? 'Talk to SlideForge — e.g. “make me 4 slides about our Series-A plan”' : '⛓ OpenCode MCP active — type here to queue or command OpenCode directly')
+      ? (state.aiConnected ? 'Talk to Patarang — e.g. “make me 4 slides about our Series-A plan”' : '⛓ OpenCode MCP active — type here to queue or command OpenCode directly')
       : hint;
   }
   const br = $('#brief');
@@ -1242,7 +1242,7 @@ function updateProviderUi(d) {
     ribbon.className = 'ribbon ribbon--off';
     ribbon.textContent = "AI NOT CONNECTED — pick a provider in ⚙ Setup or enable ⛓ Connect for OpenCode MCP";
     ribbon.hidden = false;
-    aiMsgOnce({ kind: 'err', title: 'AI not connected', text: 'Open ⚙ Setup to save an API key, or open ⛓ Connect to let OpenCode drive SlideForge via MCP.' });
+    aiMsgOnce({ kind: 'err', title: 'AI not connected', text: 'Open ⚙ Setup to save an API key, or open ⛓ Connect to let OpenCode drive Patarang via MCP.' });
   } else if (!state.aiConnected && agentState.enabled) {
     $('#providerChip').textContent = '⛓ opencode MCP';
     $('#providerChip').classList.remove('chip--off');

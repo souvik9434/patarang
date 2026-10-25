@@ -1,7 +1,7 @@
 /**
  * render/slide-html.js — spec -> complete 1280x720 HTML document.
  *
- * The produced document is the canonical artefact of a SlideForge slide:
+ * The produced document is the canonical artefact of a Patarang slide:
  *   - self-contained markup + inline CSS (no CDN, no network at export time)
  *   - a `<script id="slide-spec" type="application/json">` island carrying the
  *     machine-readable spec (invariant I1: HTML is authoritative, spec is a cache)

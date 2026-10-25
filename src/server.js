@@ -1,5 +1,5 @@
 /**
- * server.js — SlideForge HTTP server (zero framework).
+ * server.js — Patarang HTTP server (zero framework).
  *
  *   GET  /                          editor shell
  *   GET  /canvas/:deck/:page.html   canvas document (iframe target)
@@ -40,7 +40,7 @@ const server = http.createServer(async (req, res) => {
     if (serveStatic(req, res, url)) return;
     // SPA-ish fallback
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('404 — SlideForge');
+    res.end('404 — Patarang');
   } catch (e) {
     if (!res.headersSent) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -52,7 +52,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`SlideForge listening on http://${HOST}:${PORT}`);
+  console.log(`Patarang listening on http://${HOST}:${PORT}`);
   console.log(`  data:    ${path.join(PROJECT_ROOT, 'data')}`);
   console.log(`  exports: ${EXPORT_DIR}`);
   console.log(`  provider: ${loadConfig().provider || '(not connected)'} ${loadConfig().model || ''}`);

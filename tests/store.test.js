@@ -4,8 +4,8 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-const tmp = mkdtempSync(path.join(os.tmpdir(), 'slideforge-store-test-'));
-process.env.SLIDEFORGE_DATA = tmp;
+const tmp = mkdtempSync(path.join(os.tmpdir(), 'patarang-store-test-'));
+process.env.PATARANG_DATA = tmp;
 
 const store = await import('../src/store.js');
 

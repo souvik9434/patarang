@@ -1,8 +1,8 @@
-# Contributing to SlideForge
+# Contributing to Patarang
 
 Thank you for helping build the open-source AI presentation studio. ❤️
 
-First off: fixes and small improvements are always welcome. The rules below exist to keep the codebase healthy and to make sure nothing enters it that could hurt you — SlideForge ships with a hard promise of **local-first API-key safety**, and we defend it in review.
+First off: fixes and small improvements are always welcome. The rules below exist to keep the codebase healthy and to make sure nothing enters it that could hurt you — Patarang ships with a hard promise of **local-first API-key safety**, and we defend it in review.
 
 Before you start, make sure you've read the [Code of Conduct](CODE_OF_CONDUCT.md). By participating you agree to it.
 
@@ -40,8 +40,8 @@ Label routing: look for [`good first issue`](../../issues?q=is%3Aissue%20is%3Aop
 
 ### 2. Set up your environment
 ```bash
-git clone https://github.com/souvik9434/slideforge.git
-cd slideforge
+git clone https://github.com/souvik9434/patarang.git
+cd patarang
 npm install
 npm start   # http://127.0.0.1:4173 — Setup (⚙) → paste YOUR key → Save & Validate
 npm test
@@ -77,7 +77,7 @@ Add tests for new behavior. Core modules (`schema`, `render`, `store`, `export`,
 
 ## API-key safety rules (non-negotiable)
 
-SlideForge's promise is that user keys stay on the user's machine. In any PR:
+Patarang's promise is that user keys stay on the user's machine. In any PR:
 
 - **Never** write a key into code, tests, docs, or fixtures — use obvious fake strings (`paste-your-api-key-here`).
 - **Never** return a full key from an endpoint — go through `maskKey()` / `publicConfig()` (`src/ai/config-store.js`).

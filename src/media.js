@@ -17,7 +17,7 @@ import { ROOT as DATA_ROOT } from './store.js';
 
 export const MEDIA_DIR = path.join(DATA_ROOT, 'media');
 
-const MAX_UPLOAD = Number(process.env.SLIDEFORGE_MAX_UPLOAD || 20 * 1024 * 1024);
+const MAX_UPLOAD = Number(process.env.PATARANG_MAX_UPLOAD || 20 * 1024 * 1024);
 /** Slack above the per-file cap for the multipart envelope itself. */
 const ENVELOPE_SLACK = 1024 * 1024;
 

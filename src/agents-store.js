@@ -2,8 +2,8 @@
  * agents-store.js — the AGENT CONNECT layer (2026-10-23).
  *
  * Lets trusted coding agents (opencode, Freebuff, any MCP client) control
- * SlideForge through token-gated HTTP + the MCP stdio server in
- * scripts/slideforge-mcp.mjs. Rules (mirrors the key-security mandate):
+ * Patarang through token-gated HTTP + the MCP stdio server in
+ * scripts/patarang-mcp.mjs. Rules (mirrors the key-security mandate):
  *   - token is generated locally on first use, stored ONLY in
  *     data/agents.json, never logged, never sent anywhere;
  *   - access is OFF until the user switches it on in the ⛓ Connect tab;
@@ -16,7 +16,7 @@ import { randomBytes } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
-const ROOT = process.env.SLIDEFORGE_DATA || path.resolve(process.cwd(), 'data');
+const ROOT = process.env.PATARANG_DATA || path.resolve(process.cwd(), 'data');
 const FILE = path.join(ROOT, 'agents.json');
 
 const AGENT_NAMES = new Set(['opencode', 'freebuff', 'other', 'unknown']);

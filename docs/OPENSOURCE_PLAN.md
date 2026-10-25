@@ -1,4 +1,4 @@
-# SlideForge: Open-Source Release Plan (v2 — research-grounded, execution-ready)
+# Patarang: Open-Source Release Plan (v2 — research-grounded, execution-ready)
 
 > **Target**: Public GitHub repository, MIT-licensed, ranked in GitHub search & Explore, with a contribution process that makes intentional or accidental damage impossible to merge.
 > **Basis**: Deep-audit of this working tree + structural study of real top-tier repos: **sst/opencode** (config, CONTRIBUTING, .github layout) and **slidevjs/slidev** (community profile, docs split), verified via the GitHub Contents API on 2026-10-24.
@@ -10,8 +10,8 @@
 
 | # | Decision | Default if unanswered |
 |---|----------|----------------------|
-| 1 | **Where to publish**: real GitHub account/org + repo name. All docs currently use the placeholder `slideforge/slideforge`. | Publish under the owner's own account as `<owner>/slideforge` |
-| 2 | **Contact emails** in SECURITY.md (`security@slideforge.dev`) and CoC (`conduct@slideforge.dev`) — real mailbox or GitHub **private security advisory + Discussion** only? | Drop vanity domains; use GitHub private advisories + a Discussions category |
+| 1 | **Where to publish**: real GitHub account/org + repo name. All docs currently use the placeholder `patarang/patarang`. | Publish under the owner's own account as `<owner>/patarang` |
+| 2 | **Contact emails** in SECURITY.md (`security@patarang.dev`) and CoC (`conduct@patarang.dev`) — real mailbox or GitHub **private security advisory + Discussion** only? | Drop vanity domains; use GitHub private advisories + a Discussions category |
 | 3 | **Private docs curation**: which of the 9 internal build/recon/roast docs (`01-ROAST-PREMORTEM.md` … `11-*.md`, `03-RECON-FINDINGS.md`, `04-AI-DEEP-RECON.md`) may go public, vs. kept as `docs/internal/` (git-ignored)? | Keep all recon/GenSpark-derived docs private; publish only user-facing docs |
 | 4 | Publish as-is now with `npm publish` later, or never to npm? | GitHub-only for v0.1.x; npm decided after first release |
 
@@ -64,7 +64,7 @@ Verified from `api.github.com/repos/slidevjs/slidev/contents/`:
 3. **`LICENSE` is corrupted**: the MIT liability paragraph is duplicated ("IN NO EVENT SHALL … IN NO EVENT SHALL …") and the middle of the paragraph was mangled during a paste. Replace with the byte-exact canonical MIT text.
 4. **`.env.example` placeholder is `AIzaSyYourApiKeyHere`** — starts with the real Google-key prefix `AIzaSy`; style it like a real key so users don't "fix" it accidentally, but it *is* short enough to evade GitHub's pattern — still, use a neutral value (`paste-your-gemini-key-here`) so secret scanners and humans both read it as a template.
 5. **`docs/` mixes public and private docs.** `03-RECON-FINDINGS.md` / `04-AI-DEEP-RECON.md` / `01-…-ROAST-*.md` etc. contain GenSpark recon evidence and internal roast gates. Decide curation (Decision #3) before `git init`, because **git history is forever**.
-6. **`package.json` metadata points to the placeholder repo** (`slideforge/slideforge`) — must match the real remoteslug (Decision #1) or npm/GitHub links 404 publicly on day one.
+6. **`package.json` metadata points to the placeholder repo** (`patarang/patarang`) — must match the real remoteslug (Decision #1) or npm/GitHub links 404 publicly on day one.
 
 ### 🟡 Should-have for "top-repo" credibility (cheap, do in Phase 2–3)
 - `.github/CODEOWNERS` (opencode-style review routing) — even a single-person team counts as the review gate.
@@ -79,8 +79,8 @@ Verified from `api.github.com/repos/slidevjs/slidev/contents/`:
 
 **Choice: MIT** (already in package.json + LICENSE). Rationale:
 - Direct competitors and nearest analogues (Slidev = MIT, most BYO-key dev tools) use MIT/Apache-2.0; permissive maximizes adoption, forks, and "used by" lists — the goal is stars and ranking, not enforcement.
-- **What protects us from abuse is not the license**: the name/trademark ("SlideForge"), the branding, and GitHub org trust. A cheap parallel-lane trademark registration of the name is recommended; MIT code legally *must* remain forkable (that's the point).
-- Add one README line: *"SlideForge is not affiliated with or endorsed by Genspark; it is an independent, behaviour-parity implementation."* — pre-empts copycat-confusion reports that hurt ranking.
+- **What protects us from abuse is not the license**: the name/trademark ("Patarang"), the branding, and GitHub org trust. A cheap parallel-lane trademark registration of the name is recommended; MIT code legally *must* remain forkable (that's the point).
+- Add one README line: *"Patarang is not affiliated with or endorsed by Genspark; it is an independent, behaviour-parity implementation."* — pre-empts copycat-confusion reports that hurt ranking.
 
 The corrupted LICENSE text gets replaced by canonical MIT ("Copyright (c) 2026 <real name/org>") in Phase 1 — a LICENSE file with malformed text makes GitHub's license detection (`detect-license` API) fail and shows no license badge, which actively hurts ranking.
 
@@ -91,7 +91,7 @@ The corrupted LICENSE text gets replaced by canonical MIT ("Copyright (c) 2026 <
 ### 4.1 Product guarantees — verify, then document as tested claims
 | Guarantee | Mechanism (already in code) | Hardening |
 |---|---|---|
-| Keys are local-only | `data/config.json` (git-ignored), env-var override `SLIDEFORGE_API_KEY` | Add `data/`, `.env*`, `memory/`, `session-*.md`, `recon/`, `proof/` verification to a repo-hygiene CI step |
+| Keys are local-only | `data/config.json` (git-ignored), env-var override `PATARANG_API_KEY` | Add `data/`, `.env*`, `memory/`, `session-*.md`, `recon/`, `proof/` verification to a repo-hygiene CI step |
 | Browser never sees plaintext keys | `maskKey()` / `maskToken()` in `config-store.js` / `agents-store.js`; `publicConfig()` strips the key | **Add a unit test asserting no API response body ever contains a full key** (defense against future contributors breaking it) |
 | No key leakage in logs/errors | Provider error messages are static strings | Add regex redaction middleware for any `400/401/403` provider response body before it reaches console/UI; test it |
 | No keys committed by *users* either | `.gitignore` covers `.env*` + `data/` | Ship a `scripts/check-secrets.js` (regex scan) run in CI both for the repo itself and documented for forks |
@@ -144,13 +144,13 @@ Fill in Section 0 defaults or override them. Nothing is committed yet.
 2. Release flow: GitHub Release v0.1.0 with per-archetype screenshots in the release notes (releases create the repo's "published" signal for Explore/the trending algorithm).
 3. Cross-listing: Rebuild in Stack "Open Source Alternatives" list, slidegen/marpp adjacent Dev.to write-up ("Why we rebuilt GenSpark AI Slides — open source, your own key"), awesome-* PRs where the tool genuinely fits (`awesome-slide`…), SaaSHub/Software-Advice listing reuse from the existing sweep playbook.
 4. Steady-state contributions cadence: label cleanup weekly, `stale bot` optional, response-time discipline (first response within 24–48h is the strongest ranking/retention factor for new repos).
-5. npm package `slideforge` (v0.2) once Decision #4 resolves — npm presence feeds back into GitHub search weight ("published package" field).
+5. npm package `patarang` (v0.2) once Decision #4 resolves — npm presence feeds back into GitHub search weight ("published package" field).
 
 ### Verification gates before pushing
 - [ ] `git ls-files` reviewed top-to-bottom — no `data/`, `memory/`, `recon/`, `proof/`, `exports/`, session notes.
 - [ ] Secret scan clean; LICENSE detected as MIT by GitHub (check the license badge renders).
 - [ ] `npm test` green at HEAD; CI green on the pushed commit.
-- [ ] Every README/CONTRIBUTING/SECURITY link resolves (no placeholder `slideforge/slideforge` left).
+- [ ] Every README/CONTRIBUTING/SECURITY link resolves (no placeholder `patarang/patarang` left).
 - [ ] Branch protection active before the *second* push (first push happens pre-settings; that window has zero risk since the only committer is us).
 
 ---

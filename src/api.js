@@ -3,8 +3,8 @@
  *
  * Route names mirror the OBSERVED GenSpark contracts where they exist
  * (/api/project/slide_data, /api/project/save_slide_data) so a client written
- * against SlideForge reads like a client written against Genspark.
- * SlideForge-specific routes live under /api/decks/.
+ * against Patarang reads like a client written against Genspark.
+ * Patarang-specific routes live under /api/decks/.
  */
 
 import path from 'node:path';
@@ -191,7 +191,7 @@ export async function handleApi(req, res, url) {
         key_hint: cfg.apiKey ? maskKey(cfg.apiKey) : '',
         key_present: !!cfg.apiKey,
         connected: pub.connected,
-        config_source: process.env.SLIDEFORGE_API_KEY ? 'env' : 'file',
+        config_source: process.env.PATARANG_API_KEY ? 'env' : 'file',
       },
       message: '',
     });
@@ -710,7 +710,7 @@ async function streamChat(req, res, body) {
 /**
  * Run the full conversational pipeline non-SSE for agents: the SAME
  * streamChat (router → executor → save), captured into JSON events. The MCP
- * tool `slideforge_chat` returns {outcome, events, reply, deck} to the agent.
+ * tool `patarang_chat` returns {outcome, events, reply, deck} to the agent.
  */
 async function captureStreamChat(body) {
   const chunks = [];

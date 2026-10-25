@@ -26,7 +26,7 @@ import { normalizeSpec, validateSpec, CORE_ARCHETYPES, ARCHETYPE_IDS, THEME_IDS 
 import { renderSlideHtml } from '../render/slide-html.js';
 import { attachProvenance, extractJson } from './orchestrator.js';
 
-const ROUTER_SYSTEM = `You are SlideForge's assistant. You route ONE user message to EXACTLY ONE deck tool and output STRICT JSON only (no markdown fences):
+const ROUTER_SYSTEM = `You are Patarang's assistant. You route ONE user message to EXACTLY ONE deck tool and output STRICT JSON only (no markdown fences):
 {"action": string, "slides": int|null, "page_no": int|null, "theme": string|null, "brief": string|null, "instruction": string|null, "delete_ranges": [string]|null, "reply": string}
 
 Actions: create | add_slides | edit_slide | edit_selection | edit_theme | delete_slides | verify | answer
@@ -93,7 +93,7 @@ export async function routeChat(provider, { message, deckOpen = false, page_no =
 
 /* ─────────────────── single-slide editor (edit_slide) ─────────────────── */
 
-const EDITOR_SYSTEM = `You are SlideForge's slide editor. You rewrite ONE existing slide and output STRICT JSON only (no markdown fences):
+const EDITOR_SYSTEM = `You are Patarang's slide editor. You rewrite ONE existing slide and output STRICT JSON only (no markdown fences):
 {"spec": <SlideSpec>}
 
 Rules:

@@ -1,10 +1,10 @@
-// register-mcp.mjs — insert "slideforge" into opencode.jsonc mcp.servers (idempotent, backup first).
+// register-mcp.mjs — insert "patarang" into opencode.jsonc mcp.servers (idempotent, backup first).
 import { readFileSync, writeFileSync, copyFileSync } from 'node:fs';
 
 const CFG = 'D:/MCP-Tools/xdg/config/opencode/opencode.jsonc';
 const raw = readFileSync(CFG, 'utf8');
 
-if (raw.includes('"slideforge"')) { console.log('already registered'); process.exit(0); }
+if (raw.includes('"patarang"')) { console.log('already registered'); process.exit(0); }
 
 // locate the "rea" entry inside mcp (string-match on exact source text)
 const reaIdx = raw.indexOf('"rea"');
@@ -12,11 +12,11 @@ if (reaIdx === -1) { console.error('rea entry not found — abort'); process.exi
 
 const entry = [
   '',
-  '      "slideforge": {',
+  '      "patarang": {',
   '        "type": "local",',
   '        "command": [',
   '          "C:\\\\Program Files\\\\nodejs\\\\node.exe",',
-  '          "D:\\\\SlideForge\\\\scripts\\\\slideforge-mcp.mjs"',
+  '          "D:\\\\Patarang\\\\scripts\\\\patarang-mcp.mjs"',
   '        ],',
   '        "disabled": false',
   '      },',
@@ -33,7 +33,7 @@ for (let i = openBrace; i < raw.length; i++) {
 }
 if (end === -1) { console.error('brace walk failed'); process.exit(1); }
 
-const out = raw.slice(0, end + 1) + ',' + entry.slice(1).replace('\n      "slideforge"', '\n      "slideforge"').padEnd(0) + raw.slice(end + 1).replace(/^,/, (m, off) => (raw.slice(0, end + 1) + ',').length ? ',' : ',');
+const out = raw.slice(0, end + 1) + ',' + entry.slice(1).replace('\n      "patarang"', '\n      "patarang"').padEnd(0) + raw.slice(end + 1).replace(/^,/, (m, off) => (raw.slice(0, end + 1) + ',').length ? ',' : ',');
 
 // Simpler: build via splice on the comma that follows rea
 let after = raw.slice(end + 1);
@@ -47,6 +47,6 @@ const next = raw.slice(0, end + 1) + after;
 const stripped = next.replace(/^\s*\/\/.*$/gm, '');
 try { JSON.parse(stripped); } catch (e) { console.error('resulting config not valid JSON after comment strip:', e.message); process.exit(1); }
 
-copyFileSync(CFG, CFG + '.slideforge-backup');
+copyFileSync(CFG, CFG + '.patarang-backup');
 writeFileSync(CFG, next);
-console.log('registered slideforge in opencode.jsonc (backup: opencode.jsonc.slideforge-backup)');
+console.log('registered patarang in opencode.jsonc (backup: opencode.jsonc.patarang-backup)');

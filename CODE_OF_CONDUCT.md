@@ -49,4 +49,4 @@ an individual is officially representing the community in public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible at conduct@slideforge.dev.
+reported to the community leaders responsible at conduct@patarang.dev.

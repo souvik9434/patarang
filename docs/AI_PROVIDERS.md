@@ -1,6 +1,6 @@
 # Configuring AI Providers & API Keys
 
-SlideForge uses a **Bring Your Own Key (BYOK)** model. You maintain complete control over your AI provider, model choice, and API spend.
+Patarang uses a **Bring Your Own Key (BYOK)** model. You maintain complete control over your AI provider, model choice, and API spend.
 
 ---
 
@@ -10,7 +10,7 @@ SlideForge uses a **Bring Your Own Key (BYOK)** model. You maintain complete con
 - **Provider key**: `gemini`
 - **Default model**: `gemini-2.5-flash` (or `gemini-2.5-pro`)
 - **How to get a key**: Visit [Google AI Studio](https://aistudio.google.com/) to generate a free or paid API key (`AIza...`).
-- **Configuration**: Open Setup (⚙) in the SlideForge studio, select **Gemini**, paste your API key, and click **Save & Validate**.
+- **Configuration**: Open Setup (⚙) in the Patarang studio, select **Gemini**, paste your API key, and click **Save & Validate**.
 
 ### 2. Google Cloud Vertex AI (Express Mode)
 - **Provider key**: `vertex`

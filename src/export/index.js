@@ -55,7 +55,7 @@ export async function closeBrowser() {
 
 /** Stage slide HTML + fonts into a temp dir so file:// rendering is fully local. */
 export function stageDir(pages, { fontsDir, mediaDir } = {}) {
-  const dir = path.join(os.tmpdir(), `slideforge-export-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`);
+  const dir = path.join(os.tmpdir(), `patarang-export-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`);
   mkdirSync(dir, { recursive: true });
   const pagesDir = path.join(dir, 'pages');
   mkdirSync(pagesDir, { recursive: true });
@@ -63,7 +63,7 @@ export function stageDir(pages, { fontsDir, mediaDir } = {}) {
     cpSync(fontsDir, path.join(dir, 'fonts'), { recursive: true });
     cpSync(fontsDir, path.join(pagesDir, 'fonts'), { recursive: true });
   }
-  const mDir = mediaDir || path.join(process.env.SLIDEFORGE_DATA || path.resolve(process.cwd(), 'data'), 'media');
+  const mDir = mediaDir || path.join(process.env.PATARANG_DATA || path.resolve(process.cwd(), 'data'), 'media');
   if (mDir && existsSync(mDir)) {
     cpSync(mDir, path.join(pagesDir, 'media'), { recursive: true });
   }
@@ -207,8 +207,8 @@ export async function exportPptxNative(specs, { outFile } = {}) {
   const pptx = new pptxgen();
   pptx.defineLayout({ name: 'SF16x9', width: IN_W, height: IN_H });
   pptx.layout = 'SF16x9';
-  pptx.author = 'SlideForge';
-  pptx.title = 'SlideForge deck';
+  pptx.author = 'Patarang';
+  pptx.title = 'Patarang deck';
 
   for (const spec of specs) {
     const t = { ...(THEMES[spec.theme] || THEMES.midnight), ...(spec.palette || {}) };
@@ -380,7 +380,7 @@ export async function exportPptxImage(pngFiles, { outFile } = {}) {
   const pptx = new pptxgen();
   pptx.defineLayout({ name: 'SF16x9', width: IN_W, height: IN_H });
   pptx.layout = 'SF16x9';
-  pptx.author = 'SlideForge';
+  pptx.author = 'Patarang';
   for (const f of pngFiles) {
     const slide = pptx.addSlide();
     slide.addImage({ path: f, x: 0, y: 0, w: IN_W, h: IN_H });

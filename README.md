@@ -1,11 +1,11 @@
 <div align="center">
 
-# ⚡ SlideForge
+# ⚡ Patarang
 
 ### **The Open-Source AI Presentation Studio**
 *A behaviour-parity, production-grade clone of GenSpark AI Slides running entirely on your own AI API keys.*
 
-[![CI Status](https://github.com/souvik9434/slideforge/actions/workflows/ci.yml/badge.svg)](https://github.com/souvik9434/slideforge/actions)
+[![CI Status](https://github.com/souvik9434/patarang/actions/workflows/ci.yml/badge.svg)](https://github.com/souvik9434/patarang/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D22.19-brightgreen.svg)](https://nodejs.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -21,9 +21,9 @@
 
 ---
 
-## 🌟 What is SlideForge?
+## 🌟 What is Patarang?
 
-SlideForge is a lightning-fast, local-first AI presentation studio. It empowers you to generate professional, multi-slide decks from a single prompt using state-of-the-art LLMs (**Google Gemini, Vertex AI, or OpenAI-compatible endpoints**), edit them in a live canvas studio, and export them into high-fidelity **vector PDFs** and **native PowerPoint (PPTX)** presentations.
+Patarang is a lightning-fast, local-first AI presentation studio. It empowers you to generate professional, multi-slide decks from a single prompt using state-of-the-art LLMs (**Google Gemini, Vertex AI, or OpenAI-compatible endpoints**), edit them in a live canvas studio, and export them into high-fidelity **vector PDFs** and **native PowerPoint (PPTX)** presentations.
 
 ### Key Highlights:
 - 🎨 **Professional Archetypes**: Hero, Bento, Metric-Triple, Split-Compare, Bullets, Timeline, Quote, Table and more, with a live canvas editor (move, resize, restyle, undo/redo).
@@ -31,15 +31,15 @@ SlideForge is a lightning-fast, local-first AI presentation studio. It empowers 
 - 📄 **High-Fidelity Exports**: Vector-accurate PDF generation and editable **native** PPTX output.
 - 🛡️ **Robust Test Suite**: automated tests covering schema validation, HTML sanitization, render round-trips, and API-key safety — with a secret scanner and CI hygiene job locking the guarantees in.
 
-### Where SlideForge fits
+### Where Patarang fits
 
 | If you want to… | Use |
 |---|---|
 | Write Markdown yourself and present it (developer talks) | [Slidev](https://github.com/slidevjs/slidev) — excellent, and not us |
-| Have **AI build the deck for you**, free, open-source, on your own key | **SlideForge** ✨ |
+| Have **AI build the deck for you**, free, open-source, on your own key | **Patarang** ✨ |
 | Have AI build the deck for you behind a credit paywall | Gamma / GenSpark (proprietary) |
 
-> SlideForge is not affiliated with or endorsed by Genspark; it is an independent, behavior-parity implementation.
+> Patarang is not affiliated with or endorsed by Genspark; it is an independent, behavior-parity implementation.
 
 ---
 
@@ -50,8 +50,8 @@ SlideForge is a lightning-fast, local-first AI presentation studio. It empowers 
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/souvik9434/slideforge.git
-cd slideforge
+git clone https://github.com/souvik9434/patarang.git
+cd patarang
 npm install
 ```
 
@@ -65,7 +65,7 @@ Open **`http://127.0.0.1:4173`**, click **Setup (⚙)**, select your AI provider
 Alternatively, you can set local environment variables:
 ```bash
 cp .env.example .env
-# Edit .env with your SLIDEFORGE_API_KEY
+# Edit .env with your PATARANG_API_KEY
 ```
 
 ### 3. Generate a Deck via CLI
@@ -77,7 +77,7 @@ node scripts/seed.js "The Future of Quantum Computing in 2026" --slides 8 --them
 
 ## 🔒 API Key Safety & Security
 
-SlideForge prioritizes your privacy and security:
+Patarang prioritizes your privacy and security:
 - **Local-First Storage**: Your API key is stored locally in `data/config.json` (git-ignored) on your machine.
 - **Zero UI Key Echoing**: The backend server never transmits plaintext API keys back to the browser UI.
 - **Sanitized Logging**: All request handlers and loggers sanitize output to prevent accidental key exposure.

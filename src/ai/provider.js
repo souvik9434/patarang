@@ -22,7 +22,7 @@
  *   usage includes engine metadata when present:
  *   { input_tokens, output_tokens, cached_tokens, thinking_tokens }
  *
- * Config precedence: explicit opts > SLIDEFORGE_* env > data/config.json
+ * Config precedence: explicit opts > PATARANG_* env > data/config.json
  * (see config-store.js). The key never reaches the browser unmasked.
  */
 
@@ -269,7 +269,7 @@ function openAIImageParts(images) {
  *   - Gemini family → generationConfig.thinkingConfig.thinkingLevel
  *   - Claude family → generationConfig.thinkingConfig.thinkingBudget
  *     (CLAUDE_BUDGET map; best-effort — the engine rejects wrong values clearly)
- *   - glm/deepseek/grok → engine-managed; SlideForge sends no override
+ *   - glm/deepseek/grok → engine-managed; Patarang sends no override
  *
  * Caching done right (roast §4, "cache properly"):
  *   1. The system prompt is STATIC across calls (orchestrator SYSTEM)
@@ -329,7 +329,7 @@ function vertexProvider({ apiKey, model, baseUrl, reasoning = 'low', cacheName =
       return { ok: true, engine: 'vertex', status: res.status };
     },
     async complete({ system, user, schema, images }) {
-      if (!apiKey) throw new ProviderError('missing Vertex API key (save it in Setup → Vertex, or set SLIDEFORGE_API_KEY)', 401);
+      if (!apiKey) throw new ProviderError('missing Vertex API key (save it in Setup → Vertex, or set PATARANG_API_KEY)', 401);
       const url = `${root}/${v}/${path}:generateContent`;
       const res = await fetch(url, {
         method: 'POST',
@@ -410,7 +410,7 @@ function geminiProvider({ apiKey, model, baseUrl, reasoning = 'low' }) {
       return { ok: true, engine: 'gemini', status: res.status };
     },
     async complete({ system, user, schema, images }) {
-      if (!apiKey) throw new ProviderError('missing API key for gemini provider (set SLIDEFORGE_API_KEY or save it in Setup)', 401);
+      if (!apiKey) throw new ProviderError('missing API key for gemini provider (set PATARANG_API_KEY or save it in Setup)', 401);
       const url = `${root}/models/${encodeURIComponent(model)}:generateContent`;
       const gen = { temperature: 0.6, responseMimeType: 'application/json' };
       if (schema) gen.responseSchema = toVertexSchema(schema);
@@ -444,7 +444,7 @@ function openAICompatibleProvider({ apiKey, model, baseUrl, reasoning = 'low' })
       return { ok: true, engine: 'openai-compatible', status: res.status };
     },
     async complete({ system, user, schema, images }) {
-      if (!apiKey) throw new ProviderError('missing API key for openai-compatible provider (set SLIDEFORGE_API_KEY or save it in Setup)', 401);
+      if (!apiKey) throw new ProviderError('missing API key for openai-compatible provider (set PATARANG_API_KEY or save it in Setup)', 401);
       const imgParts = openAIImageParts(images);
       const body = {
         model,
@@ -454,7 +454,7 @@ function openAICompatibleProvider({ apiKey, model, baseUrl, reasoning = 'low' })
             ? { role: 'user', content: [{ type: 'text', text: user }, ...imgParts] }
             : { role: 'user', content: user },
         ],
-        response_format: schema ? { type: 'json_schema', json_schema: { name: 'slideforge_schema', schema } } : { type: 'json_object' },
+        response_format: schema ? { type: 'json_schema', json_schema: { name: 'patarang_schema', schema } } : { type: 'json_object' },
         temperature: 0.6,
       };
       if (String(reasoning) !== 'off' && /^(gpt-5|o[13456])/i.test(model)) body.reasoning_effort = reasoning === 'low' ? 'low' : reasoning === 'high' ? 'high' : 'medium';

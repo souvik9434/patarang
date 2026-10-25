@@ -47,7 +47,7 @@ export const PROVIDERS = [
     source: 'catalog',
   },
   // NOTE (2026-10-23): NO 'mock' entry — the UI/catalog must never offer an
-  // offline mode. SlideForge works ONLY when a real provider + API key is
+  // offline mode. Patarang works ONLY when a real provider + API key is
   // configured; otherwise the app shows "AI not connected". The deterministic
   // createMockProvider() survives ONLY as an explicit test double, imported
   // directly by tests — unreachable from any config/env/UI path.
@@ -101,9 +101,9 @@ export const MODELS = [
   { id: 'claude-opus-5-5', publisher: 'anthropic', label: 'Claude Opus 5.5 (Vertex partner)', family: 'claude', thinking: ['none', 'low', 'medium', 'high', 'xhigh', 'max'], cache: true, tools: true, context: 200000, status: 'active' },
   { id: 'claude-haiku-5-5', publisher: 'anthropic', label: 'Claude Haiku 5.5 (Vertex partner)', family: 'claude', thinking: ['none', 'low', 'medium', 'high', 'xhigh', 'max'], cache: true, tools: true, context: 200000, status: 'active' },
   { id: 'claude-fable-5-1', publisher: 'anthropic', label: 'Claude Fable 5.1 (Vertex partner)', family: 'claude', thinking: ['none', 'low', 'medium', 'high', 'xhigh', 'max'], cache: true, tools: true, context: 200000, status: 'active' },
-  { id: 'grok-4.7', publisher: 'xai', label: 'Grok 4.7 (Vertex MaaS)', family: 'grok', thinking: ['low', 'medium', 'high'], cache: true, tools: true, context: 200000, status: 'beta', note: 'Reasoning is owned by the serving side; SlideForge sends no override unless a level matches.' },
-  { id: 'glm-5.2', publisher: 'zai-org', label: 'GLM 5.2 (Vertex MaaS)', family: 'glm', thinking: [], cache: true, tools: true, context: 200000, status: 'beta', note: 'Thinking is a server-side variant; SlideForge sends no override.' },
-  { id: 'deepseek-v4.1-flash', publisher: 'deepseek', label: 'DeepSeek V4.1 Flash (Vertex MaaS)', family: 'deepseek', thinking: [], cache: true, tools: true, context: 128000, status: 'beta', note: 'Thinking is a server-side variant; SlideForge sends no override.' },
+  { id: 'grok-4.7', publisher: 'xai', label: 'Grok 4.7 (Vertex MaaS)', family: 'grok', thinking: ['low', 'medium', 'high'], cache: true, tools: true, context: 200000, status: 'beta', note: 'Reasoning is owned by the serving side; Patarang sends no override unless a level matches.' },
+  { id: 'glm-5.2', publisher: 'zai-org', label: 'GLM 5.2 (Vertex MaaS)', family: 'glm', thinking: [], cache: true, tools: true, context: 200000, status: 'beta', note: 'Thinking is a server-side variant; Patarang sends no override.' },
+  { id: 'deepseek-v4.1-flash', publisher: 'deepseek', label: 'DeepSeek V4.1 Flash (Vertex MaaS)', family: 'deepseek', thinking: [], cache: true, tools: true, context: 128000, status: 'beta', note: 'Thinking is a server-side variant; Patarang sends no override.' },
 ];
 
 /** Models relevant to the picker, sorted: flagship, then active Google, then partners. */

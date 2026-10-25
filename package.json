@@ -1,5 +1,5 @@
 ﻿{
-  "name": "slideforge",
+  "name": "patarang",
   "version": "0.1.0",
   "private": false,
   "type": "module",
@@ -16,16 +16,16 @@
     "ai-agent",
     "opensource"
   ],
-  "homepage": "https://github.com/souvik9434/slideforge#readme",
+  "homepage": "https://github.com/souvik9434/patarang#readme",
   "bugs": {
-    "url": "https://github.com/souvik9434/slideforge/issues"
+    "url": "https://github.com/souvik9434/patarang/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/souvik9434/slideforge.git"
+    "url": "git+https://github.com/souvik9434/patarang.git"
   },
   "license": "MIT",
-  "author": "SlideForge Core Team",
+  "author": "Patarang Core Team",
   "engines": {
     "node": ">=22.19"
   },

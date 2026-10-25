@@ -18,7 +18,7 @@ const snipOpen = await page.textContent('#snipOpen');
 const snipMcp = await page.textContent('#snipMcp');
 const list = await page.textContent('#agentList');
 console.log('state:', state, '| toggle:', toggle.trim(), '| token:', token);
-console.log('snipOpen has slideforge-mcp.mjs:', snipOpen.includes('slideforge-mcp.mjs'));
+console.log('snipOpen has patarang-mcp.mjs:', snipOpen.includes('patarang-mcp.mjs'));
 console.log('snipMcp lists 5 tools:', snipMcp.includes('tools:'));
 console.log('agent list:', list.trim().slice(0, 120));
 

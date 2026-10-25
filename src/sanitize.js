@@ -1,7 +1,7 @@
 /**
  * sanitize.js — allow-list HTML sanitiser.
  *
- * SlideForge renders HTML that was produced by an LLM. That is an XSS sink with
+ * Patarang renders HTML that was produced by an LLM. That is an XSS sink with
  * the user's own API key in the same origin, so EVERY write path passes through
  * here (invariant I2). Nothing unsanitised is written to disk, served or
  * exported.

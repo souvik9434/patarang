@@ -1,7 +1,7 @@
 /**
  * ai/config-store.js — where the provider configuration lives.
  *
- * data/config.json next to the deck store (same SLIDEFORGE_DATA root), read
+ * data/config.json next to the deck store (same PATARANG_DATA root), read
  * lazily, written atomically. The API key is NEVER returned to the UI unmasked
  * and is NEVER logged; only config save/receipt round-trips the full key.
  */
@@ -10,7 +10,7 @@ import { readFileSync, writeFileSync, renameSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { DEFAULT_MODELS } from './catalog.js';
 
-const ROOT = process.env.SLIDEFORGE_DATA || path.resolve(process.cwd(), 'data');
+const ROOT = process.env.PATARANG_DATA || path.resolve(process.cwd(), 'data');
 const FILE = path.join(ROOT, 'config.json');
 
 const ALLOWED_PROVIDERS = new Set(['gemini', 'vertex', 'openai-compatible']);
@@ -41,7 +41,7 @@ export function loadConfig() {
     model: file.model || '',
     reasoning: ['off', 'low', 'medium', 'high'].includes(file.reasoning) ? file.reasoning : 'low',
     baseUrl: file.baseUrl || '',
-    cacheName: file.cacheName || env.SLIDEFORGE_VERTEX_CACHE || '',
+    cacheName: file.cacheName || env.PATARANG_VERTEX_CACHE || '',
   };
   if (!ALLOWED_PROVIDERS.has(cfg.provider)) cfg.provider = '';
   if (cfg.provider && !cfg.model) {
@@ -90,7 +90,7 @@ export function publicConfig() {
     key: maskKey(cfg.apiKey),
     key_present: !!cfg.apiKey,
     cacheName: cfg.cacheName ? true : false,
-    source: process.env.SLIDEFORGE_API_KEY ? 'env' : 'file',
+    source: process.env.PATARANG_API_KEY ? 'env' : 'file',
     connected: !!cfg.provider && !!cfg.apiKey,
   };
 }

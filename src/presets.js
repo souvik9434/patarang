@@ -221,7 +221,7 @@ export function expandPreset(raw = {}) {
             <span style="width:10px;height:10px;border-radius:50%;background:#f87171"></span>
             <span style="width:10px;height:10px;border-radius:50%;background:#fbbf24"></span>
             <span style="width:10px;height:10px;border-radius:50%;background:#34d399"></span>
-            <span style="margin-left:12px;font-size:12px;color:var(--muted);font-family:monospace">${esc(d.url || 'app.slideforge.local/live')}</span>
+            <span style="margin-left:12px;font-size:12px;color:var(--muted);font-family:monospace">${esc(d.url || 'app.patarang.local/live')}</span>
           </div>
           <div style="padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex:1;align-content:center">
             ${metrics.map((m, i) => `

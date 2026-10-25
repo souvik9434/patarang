@@ -15,7 +15,7 @@ import { mkdirSync, existsSync, readFileSync, writeFileSync, readdirSync, rmSync
 import path from 'node:path';
 import { makeDeck, makeMetaData, makeFileContent, computeEtag, CANVAS, newId } from './schema.js';
 
-const ROOT = process.env.SLIDEFORGE_DATA || path.resolve(process.cwd(), 'data');
+const ROOT = process.env.PATARANG_DATA || path.resolve(process.cwd(), 'data');
 const DECKS = path.join(ROOT, 'decks');
 const HISTORY_LIMIT = 200;
 

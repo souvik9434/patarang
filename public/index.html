@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SlideForge — AI presentation studio</title>
+<title>Patarang — AI presentation studio</title>
 <link rel="stylesheet" href="/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M9 21V11h6a4 4 0 0 1 0 8H9m6 0 4 4' stroke='white' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 </head>
@@ -16,7 +16,7 @@
       <span class="brand__mark" aria-hidden="true">
         <svg viewBox="0 0 32 32" width="26" height="26"><rect width="32" height="32" rx="8" fill="#2563EB"/><path d="M9 21V11h6a4 4 0 0 1 0 8H9m6 0 4 4" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
-      <span class="brand__name">SlideForge</span>
+      <span class="brand__name">Patarang</span>
     </div>
 
     <div class="topbar__sep" role="presentation"></div>
@@ -73,9 +73,9 @@
     <div class="empty" id="empty">
       <div class="empty__inner">
         <h1>Turn a brief into a deck</h1>
-        <p>SlideForge plans a narrative, writes structured slide specs, renders them as 1280×720 HTML and exports vector PDF or editable PPTX — using your own model key.</p>
+        <p>Patarang plans a narrative, writes structured slide specs, renders them as 1280×720 HTML and exports vector PDF or editable PPTX — using your own model key.</p>
         <div class="empty__form">
-          <textarea id="brief" rows="3" placeholder="Tell SlideForge what to build — e.g. “make me 5 slides pitching our consumer-video intelligence to Series-A investors”"></textarea>
+          <textarea id="brief" rows="3" placeholder="Tell Patarang what to build — e.g. “make me 5 slides pitching our consumer-video intelligence to Series-A investors”"></textarea>
           <div class="empty__row">
             <button class="btn btn--primary" id="btnGenerateEmpty">Build with AI</button>
             <p class="setup__hint" id="emptyHint">Slide count comes from your message (“make me 4 slides…”). AI works only with a saved API key — ⚙ Setup.</p>
@@ -105,12 +105,12 @@
         <button class="ai-status__cancel" id="btnAiCancel" type="button" hidden>Cancel</button>
       </div>
 
-      <!-- ONE entry point: talk to SlideForge. It routes each message to the
+      <!-- ONE entry point: talk to Patarang. It routes each message to the
            right deck tool (create · add · edit slide N · edit selection ·
            re-theme · delete · verify) exactly like GenSpark's editors. -->
       <div class="ai-chat">
         <div class="ai-chat__box">
-          <textarea id="aiChatInput" rows="2" placeholder="Talk to SlideForge — e.g. “make me 4 slides about our Series-A plan”"></textarea>
+          <textarea id="aiChatInput" rows="2" placeholder="Talk to Patarang — e.g. “make me 4 slides about our Series-A plan”"></textarea>
           <button class="btn btn--primary" id="btnAiSend" title="Send (Enter)">Send</button>
         </div>
         <p class="ai-chat__hint" id="aiChatHint">say “edit slide 4, make the title punchier” · or select an element on the canvas and say “make this concrete” for EXACT edits</p>
@@ -201,7 +201,7 @@
 
       <!-- ⛓ CONNECT — token-gated agent access (opencode / Freebuff / any MCP client) -->
       <section class="tabpane" data-pane="connect">
-        <p class="setup__hint">Let trusted coding agents drive SlideForge through MCP: turn access ON, copy the snippet into <code>opencode.jsonc</code> (or hand it to Freebuff), and the agent can list decks, read every slot, send AI chat instructions, edit text surgically, and export.</p>
+        <p class="setup__hint">Let trusted coding agents drive Patarang through MCP: turn access ON, copy the snippet into <code>opencode.jsonc</code> (or hand it to Freebuff), and the agent can list decks, read every slot, send AI chat instructions, edit text surgically, and export.</p>
         <div class="agent__row">
           <button class="btn btn--block" id="btnAgentToggle" type="button">Enable agent access</button>
           <span class="agent__state" id="agentState">checking…</span>

@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve SlideForge
+about: Create a report to help us improve Patarang
 title: '[BUG] '
 labels: bug
 assignees: ''
@@ -26,5 +26,5 @@ If applicable, add screenshots or console logs to help explain your problem.
 **Environment:**
 - OS: [e.g. Windows, macOS, Linux]
 - Node version: [e.g. Node 22.19]
-- SlideForge Version: [e.g. 0.1.0]
+- Patarang Version: [e.g. 0.1.0]
 - AI Provider: [e.g. Gemini, Vertex, OpenAI]

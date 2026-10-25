@@ -16,9 +16,9 @@ import { execFileSync } from 'node:child_process';
 
 const FAKE_KEY = 'private-key-value-do-not-echo-9876w9yz';
 
-// config-store reads SLIDEFORGE_DATA at import time — set it first, then import.
+// config-store reads PATARANG_DATA at import time — set it first, then import.
 const dataDir = mkdtempSync(path.join(tmpdir(), 'sf-sec-'));
-process.env.SLIDEFORGE_DATA = dataDir;
+process.env.PATARANG_DATA = dataDir;
 // biome-ignore lint/style/noProcessEnv: needed before the static import below
 const { saveConfig, publicConfig, maskKey } = await import('../src/ai/config-store.js');
 

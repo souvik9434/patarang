@@ -7,7 +7,7 @@
 import { chromium } from 'playwright';
 import { mkdirSync } from 'node:fs';
 
-const OUT = 'D:/SlideForge/proof';
+const OUT = 'D:/Patarang/proof';
 mkdirSync(OUT, { recursive: true });
 const URL = process.env.URL || 'http://127.0.0.1:4173/';
 const PNG = process.env.PNG || `${OUT}/proof-8x8.png`;

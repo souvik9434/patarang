@@ -13,7 +13,7 @@ if (playwright) {
 let pptxgen = null;
 try { pptxgen = await import('pptxgenjs'); } catch {}
 
-const tmp = mkdtempSync(path.join(os.tmpdir(), 'slideforge-export-test-'));
+const tmp = mkdtempSync(path.join(os.tmpdir(), 'patarang-export-test-'));
 const fontsDir = path.resolve('public/fonts');
 
 const PAGES = [{
