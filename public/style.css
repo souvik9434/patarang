@@ -285,6 +285,18 @@ button,input,textarea,select{font:inherit;color:inherit}
 .ai-more>summary::-webkit-details-marker{display:none}
 .ai-more>summary::before{content:'▸ '}
 .ai-more[open]>summary::before{content:'▾ '}
+/* ── AI composer (·ai-chat): dark-theme textarea — fixes white-on-white (audit 2026-10-25: textarea bg rgb(255,255,255) × ink rgb(245,245,245)) ── */
+.ai-chat{display:flex;flex-direction:column;gap:6px}
+.ai-chat__box{display:flex;gap:8px;align-items:flex-end}
+#aiChatInput{
+  flex:1 1 auto;min-width:0;background:var(--panel);color:var(--ink);
+  border:1px solid var(--line-2);border-radius:9px;padding:10px 11px;
+  resize:vertical;line-height:1.55;font-size:12.5px;
+}
+#aiChatInput::placeholder{color:var(--ink-4)}
+#aiChatInput:focus{outline:none;border-color:var(--accent)}
+#aiChatInput::selection{background:rgba(59,130,246,.35)}
+.ai-chat__hint{font-size:11px;color:var(--ink-4);letter-spacing:.01em}
 .ai-feed{flex:1 1 auto;min-height:120px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--panel-2);scrollbar-width:thin}
 .ai-feed:empty{align-items:center;justify-content:center}
 .ai-feed:empty::before{content:'No messages yet — generate a deck, rewrite the selection, or verify content.';color:var(--ink-3);font-size:12px;font-style:italic;text-align:center;padding:12px}

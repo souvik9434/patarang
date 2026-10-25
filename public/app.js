@@ -359,7 +359,28 @@ function pushUndo(page) {
   redoStack.set(page.page_id, []);
 }
 
-function applyUndo() {
+/** Flush the debounced persist NOW, then repaint once the write is safe.
+ * Bursts (rapid undo/redo clicks) are serialized on one queue so concurrent
+ * persists can never stampede version_number into a false 409 conflict. */
+let flushQueue = Promise.resolve();
+function flushAndReload() {
+  clearTimeout(persistTimer);
+  clearTimeout(reloadCanvasSoon._t);
+  flushQueue = flushQueue
+    .then(async () => {
+      try {
+        await persist();
+        reloadCanvas();        // repaint only after a successful flush
+      } catch {
+        saveSoon();            // write failed — keep the debounced retry going
+        reloadCanvasSoon();    // and let the reload chase it like before
+      }
+    })
+    .catch(() => {});          // a rejected step never poisons the queue
+  return flushQueue;
+}
+
+async function applyUndo() {
   const page = state.pages[state.index];
   const stack = undoStack.get(page.page_id);
   if (!stack || !stack.length) { toast('Nothing to undo'); return; }
@@ -370,12 +391,11 @@ function applyUndo() {
   page.content = snap.content;
   state.spec = snap.spec;
   state.dirty.set(page.page_id, snap.content); // restore via the manual-edit pipeline
-  saveSoon();
-  reloadCanvasSoon();
+  await flushAndReload();
   toast('Undone');
 }
 
-function applyRedo() {
+async function applyRedo() {
   const page = state.pages[state.index];
   const rStack = redoStack.get(page.page_id);
   if (!rStack || !rStack.length) { toast('Nothing to redo'); return; }
@@ -386,8 +406,7 @@ function applyRedo() {
   page.content = snap.content;
   state.spec = snap.spec;
   state.dirty.set(page.page_id, snap.content);
-  saveSoon();
-  reloadCanvasSoon();
+  await flushAndReload();
   toast('Redone');
 }
 
@@ -409,6 +428,12 @@ function reloadCanvas() {
  * Undo/redo path: restore -> persist -> THEN re-point the iframe. A reload
  * before the save would just re-serve the pre-restore disk content (the
  * exact state being undone), so the refresh must chase the write.
+ *
+ * History fix (2026-10-25 audit: 1849ms click→repaint): instead of relying on
+ * the 1600ms save-debounce choreography, undo/redo FLUSH the debounced persist
+ * immediately (await), then reload — local write + one iframe fetch ≈ 300ms.
+ * On a write failure we fall back to the old debounced path, so the reload
+ * still chases a later successful save instead of re-serving stale disk state.
  */
 function reloadCanvasSoon() {
   clearTimeout(reloadCanvasSoon._t);
